@@ -46,7 +46,7 @@ If station exists, returns decoded weather response. Example:
 
 ## Demo
 
-Accessible at: https://github.com/Aayush-N/metar-demo
+Accessible at: https://172.105.63.176
 
 
 ## Run Locally
