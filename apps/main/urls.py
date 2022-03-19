@@ -1,9 +1,9 @@
 from django.urls import path
 
-# from .views import 
+from .views import LandingPageView
 
 app_name = "main"
 
 urlpatterns = [
-	# path("", view=FibonacciEntryView.as_view(), name="home"),
+	path("", view=LandingPageView.as_view(), name="landing_page"),
 ]
