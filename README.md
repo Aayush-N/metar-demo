@@ -46,7 +46,7 @@ If station exists, returns decoded weather response. Example:
 
 ## Demo
 
-Accessible at: https://172.105.63.176
+Accessible at: http://172.105.63.176
 
 
 ## Run Locally
