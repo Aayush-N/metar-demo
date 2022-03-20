@@ -148,7 +148,7 @@ class WeatherCheck(APIView):
 							continue
 					if nocache:
 						# clear cache if nocache set
-						cache.set(station_code, response_data, timeout=0)
+						cache.delete(station_code)
 					else:
 						# if not nocache set, add to cache
 						cache.set(station_code, response_data, timeout=CACHE_TTL)
