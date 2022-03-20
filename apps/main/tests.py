@@ -38,6 +38,8 @@ class MetarInfoTest(APITestCase):
 		Ensure cached request is not served when nocache is set
 		'''
 		url = reverse('api:weather_check_api')
+		# create a dummy request so that the data is stored in cache
+		add_to_cache = self.client.get(url, {'scode': 'KHUL'})
 		response = self.client.get(url, {'scode': 'KHUL', 'nocache': 1})
 		self.assertEqual(response.status_code, status.HTTP_200_OK)
 		self.assertFalse('cached' in response.data)
@@ -47,6 +49,7 @@ class MetarInfoTest(APITestCase):
 		Ensure caching is working when nocache is not set
 		'''
 		url = reverse('api:weather_check_api')
+		# create a dummy request so that the data is stored in cache
 		add_to_cache = self.client.get(url, {'scode': 'KHUL'})
 		response = self.client.get(url, {'scode': 'KHUL'})
 		self.assertEqual(response.status_code, status.HTTP_200_OK)
