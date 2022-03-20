@@ -3,19 +3,6 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 
-# class AccountTests(APITestCase):
-#     def test_create_account(self):
-#         """
-#         Ensure we can create a new account object.
-#         """
-#         url = reverse('account-list')
-#         data = {'name': 'DabApps'}
-#         response = self.client.post(url, data, format='json')
-#         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-#         self.assertEqual(Account.objects.count(), 1)
-#         self.assertEqual(Account.objects.get().name, 'DabApps')
-
-
 class PingTest(APITestCase):
 	def test_ping_service(self):
 		'''
@@ -60,6 +47,7 @@ class MetarInfoTest(APITestCase):
 		Ensure caching is working when nocache is not set
 		'''
 		url = reverse('api:weather_check_api')
+		add_to_cache = self.client.get(url, {'scode': 'KHUL'})
 		response = self.client.get(url, {'scode': 'KHUL'})
 		self.assertEqual(response.status_code, status.HTTP_200_OK)
 		self.assertTrue('cached' in response.data)
