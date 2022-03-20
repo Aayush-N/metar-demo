@@ -48,7 +48,6 @@ class WeatherCheck(APIView):
 				nocache = True
 			else:
 				nocache = False
-
 		# if station code is provided
 		if station_code:
 			if station_code in cache and not nocache:
@@ -147,9 +146,12 @@ class WeatherCheck(APIView):
 						if weather_data:
 							response_data['weather'] = weather_dict[data[0:3]]
 							continue
-
-					# set in cache
-					cache.set(station_code, response_data, timeout=CACHE_TTL)
+					if nocache:
+						# clear cache if nocache set
+						cache.set(station_code, response_data, timeout=0)
+					else:
+						# if not nocache set, add to cache
+						cache.set(station_code, response_data, timeout=CACHE_TTL)
 					return Response(response_data, status=HTTP_200_OK)	
 				else:
 					# case when the station code provided isn't found in the metar API 
