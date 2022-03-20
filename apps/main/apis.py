@@ -28,7 +28,7 @@ class StatusCheck(APIView):
 
 class WeatherCheck(APIView):
 	"""
-	Returns the decoded version of the METAR weather
+	Returns the decoded version of the METAR report
 	data from the API. Parameters:
 
 	scode (Required - four character station code)
@@ -37,9 +37,6 @@ class WeatherCheck(APIView):
 	"""
 
 	def get(self, request, format=None):
-		"""
-		TODO
-		"""
 		response_data = {}
 		station_code = self.request.query_params.get('scode')
 		nocache = self.request.query_params.get('nocache', False)
